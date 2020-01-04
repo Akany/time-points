@@ -11,7 +11,7 @@ const port = 3000;
 app.use(bodyParser.json())
 
 app.use(userRouter);
-app.use(express.static('./public'));
+app.use(express.static('./client'));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 

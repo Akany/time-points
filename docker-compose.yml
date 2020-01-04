@@ -3,7 +3,7 @@ services:
   node:
     container_name: node
     restart: always
-    build: .
+    build: ./packages/server/
     ports:
       - "3000:3000"
     volumes:
