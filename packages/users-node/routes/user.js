@@ -1,4 +1,5 @@
 import express from 'express';
+import md5 from 'md5';
 import {User} from '../schema/user.js';
 
 export const userRouter = express.Router();
@@ -24,7 +25,10 @@ userRouter.post('/users', async (req, res) => {
     const {username, password} = req.body;
 
     try {
-        const user = new User({username, password});
+        const user = new User({
+            username,
+            password: md5(password)
+        });
 
         await user.save();
 
