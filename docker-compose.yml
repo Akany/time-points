@@ -6,7 +6,7 @@ services:
     build: ./packages/users-node
     environment:
       - PORT=3000
-      - MONGO=${USERS_MONGO_NAME}:${USERS_MONGO_PORT}
+      - MONGO=${USERS_MONGO_NAME}:${MONGO_PORT}
     ports:
       - "3001:3000"
     volumes:
@@ -20,5 +20,32 @@ services:
     image: mongo
     volumes:
       - users-mongo:/data/db
+    ports:
+      - 27017:27017
+
+  car-points-node:
+    container_name: car-points-node
+    restart: always
+    build: ./packages/car-points-node
+    environment:
+      - PORT=3000
+      - MONGO=car-points-mongo:${MONGO_PORT}
+    ports:
+      - 3002:3000
+    volumes:
+      - ./packages/car-points-node:/usr/src/app
+    links:
+      - car-points-mongo
+    depends_on:
+      - car-points-mongo
+
+  car-points-mongo:
+    container_name: car-points-mongo
+    image: mongo
+    volumes:
+      - car-points-mongo:/data/db
+    ports:
+      - 27018:27017
 volumes:
   users-mongo:
+  car-points-mongo:
