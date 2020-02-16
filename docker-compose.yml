@@ -3,7 +3,11 @@ services:
   users-node:
     container_name: users-node
     restart: always
-    build: ./packages/users-node
+    build:
+      context: ./packages/users-node
+      args:
+        NODE_ENV: development
+    command: npm run dev
     environment:
       - PORT=3000
       - MONGO=${USERS_MONGO_NAME}:${MONGO_PORT}
