@@ -4,5 +4,5 @@
 - docker-compose build
 - docker-compose up
 
-## launch app
+## launch appdocker
 open localhost:3000

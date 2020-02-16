@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 services:
   users-node:
     container_name: users-node
@@ -11,6 +11,7 @@ services:
       - "3001:3000"
     volumes:
       - ./packages/users-node:/usr/src/app
+      - /usr/src/app/node_modules
     links:
       - ${USERS_MONGO_NAME}
     depends_on:
@@ -34,6 +35,7 @@ services:
       - 3002:3000
     volumes:
       - ./packages/car-points-node:/usr/src/app
+      - /usr/src/app/node_modules
     links:
       - car-points-mongo
     depends_on:
