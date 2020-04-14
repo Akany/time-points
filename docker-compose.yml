@@ -9,10 +9,10 @@ services:
         NODE_ENV: development
     command: npm run dev
     environment:
-      - PORT=3000
+      - PORT=${NODE_PORT}
       - MONGO=${USERS_MONGO_NAME}:${MONGO_PORT}
     ports:
-      - "3001:3000"
+      - "3001:${NODE_PORT}"
     volumes:
       - ./packages/users-node:/usr/src/app
       - /usr/src/app/node_modules
@@ -52,6 +52,26 @@ services:
       - car-points-mongo:/data/db
     ports:
       - 27018:27017
+
+  personal-data-server:
+    container_name: personal-data-server
+    restart: always
+    build:
+      context: ./packages/personal-data-server
+      args:
+        NODE_ENV: development
+    command: npm run dev
+    environment:
+      - PORT=${NODE_PORT}
+      - AUTH_SERVICE=http://${USERS_NODE_NAME}:${NODE_PORT}
+    ports:
+      - "3003:${NODE_PORT}"
+    volumes:
+      - ./packages/personal-data-server:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - users-node
+
 volumes:
   users-mongo:
   car-points-mongo:
