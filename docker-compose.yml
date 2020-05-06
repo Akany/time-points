@@ -53,8 +53,30 @@ services:
     ports:
       - 27018:27017
 
+  personal-data-db:
+    container_name: personal-data-db
+    image: mongo
+    volumes:
+      - personal-data-db:/data/db
+
+  personal-data-service:
+    container_name: ${PERSONAL_DATA_SERVICE}
+    restart: always
+    build:
+      context: ./packages/personal-data-service
+    command: npm run dev
+    environment: 
+      - PORT=${NODE_PORT}
+      - MONGO=personal-data-db
+    ports:
+      - 3005:${NODE_PORT}
+    volumes:
+        - ./packages/personal-data-service:/usr/src/app
+    depends_on:
+      - personal-data-db
+
   personal-data-server:
-    container_name: personal-data-server
+    container_name: ${PERSONAL_DATA_SERVER}
     restart: always
     build:
       context: ./packages/personal-data-server
@@ -64,6 +86,7 @@ services:
     environment:
       - PORT=${NODE_PORT}
       - AUTH_SERVICE=http://${USERS_NODE_NAME}:${NODE_PORT}
+      - PERSONAL_DATA_SERICE=http://${PERSONAL_DATA_SERVICE}:${NODE_PORT}
     ports:
       - "3003:${NODE_PORT}"
     volumes:
@@ -71,7 +94,26 @@ services:
       - /usr/src/app/node_modules
     depends_on:
       - users-node
+      - personal-data-service
+
+  personal-data-client:
+    container_name: ${PERSONAL_DATA_CLIENT}
+    restart: always
+    build:
+      context: ./packages/personal-data-client
+    command: npm run dev
+    environment:
+      - PORT=${NODE_PORT}
+      - SERVER=http://${PERSONAL_DATA_SERVER}:${NODE_PORT}
+    ports:
+      - "3004:${NODE_PORT}"
+    volumes:
+      - ./packages/personal-data-client:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - ${PERSONAL_DATA_SERVER}
 
 volumes:
   users-mongo:
   car-points-mongo:
+  personal-data-db:

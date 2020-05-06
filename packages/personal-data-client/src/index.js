@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import {App} from './app.jsx';
+import {App} from './app.js';
 
 const holder = document.createElement('div');
 

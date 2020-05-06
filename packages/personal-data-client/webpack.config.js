@@ -7,7 +7,7 @@ module.exports = function(options) {
 
     return {
         mode,
-        entry: './src/index.jsx',
+        entry: './src/index.js',
         output: {
             filename: '[name].bundle.js'
         },
@@ -15,7 +15,7 @@ module.exports = function(options) {
         module: {
             rules: [
                 {
-                    test: /(\.js|\.jsx)$/,
+                    test: /\.js$/,
                     exclude: /node_modules/,
                     use: {
                         loader: 'babel-loader'
@@ -44,6 +44,10 @@ module.exports = function(options) {
         plugins: [
             new HtmlWebPackPlugin(),
             new CleanWebpackPlugin()
-        ]
+        ],
+        devServer: {
+            host: '0.0.0.0',
+            port: process.env.PORT
+        }
     }
 };
