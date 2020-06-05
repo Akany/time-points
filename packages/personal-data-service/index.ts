@@ -1,7 +1,7 @@
-import express from 'express';
+import * as express from 'express';
 
-import {connect} from './db-connection.js';
-import {passwordRoute} from './route.js';
+import {connect} from './db-connection';
+import {passwordRoute} from './route';
 
 const app = express();
 const PORT = process.env.PORT;

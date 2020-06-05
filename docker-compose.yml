@@ -56,6 +56,8 @@ services:
   personal-data-db:
     container_name: personal-data-db
     image: mongo
+    ports:
+      - 27017:27017
     volumes:
       - personal-data-db:/data/db
 
