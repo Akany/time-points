@@ -12,7 +12,7 @@ app.get('/name', (req, res) => {
     res.send('personal-data-service');
 });
 
-app.use('/api/v1/password', passwordRoute);
+app.use('/api/v1/passwords', passwordRoute);
 
 connect()
     .then(() => {

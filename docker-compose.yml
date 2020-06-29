@@ -1,4 +1,4 @@
-version: "3"
+version: "2.4"
 services:
   users-node:
     container_name: users-node
@@ -73,7 +73,8 @@ services:
     ports:
       - 3005:${NODE_PORT}
     volumes:
-        - ./packages/personal-data-service:/usr/src/app
+      - ./packages/personal-data-service:/usr/src/app
+      - /usr/src/app/node_modules
     depends_on:
       - personal-data-db
 
