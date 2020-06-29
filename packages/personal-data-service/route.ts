@@ -23,7 +23,6 @@ passwordRoute.use(onError);
 function onError(error: Error, req: Request, res: Response, next: NextFunction) {
     const {message} = error;
 
-    res
-        .status(500)
-        .send({message});
+    res.status(500);
+    res.json({message});
 }

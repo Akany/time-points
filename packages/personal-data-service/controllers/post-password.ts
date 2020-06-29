@@ -22,7 +22,7 @@ export function validateParams(req: Request, res: Response, next: NextFunction) 
     }
 
     function isExist(field: string, source: Object): Boolean {
-        return Boolean(field in source);
+        return Boolean(source[field]);
     }
 }
 
@@ -42,8 +42,8 @@ export async function onPostHash(req: Request, res: Response, next: NextFunction
     
         await password.save();
     
-        res.send('Done');
-
+        res.status(200);
+        res.json(password);
     } catch (error) {
         next(error);
     }

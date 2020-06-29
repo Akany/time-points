@@ -26,7 +26,7 @@ services:
     volumes:
       - users-mongo:/data/db
     ports:
-      - 27017:27017
+      - 27019:27017
 
   car-points-node:
     container_name: car-points-node
@@ -89,7 +89,7 @@ services:
     environment:
       - PORT=${NODE_PORT}
       - AUTH_SERVICE=http://${USERS_NODE_NAME}:${NODE_PORT}
-      - PERSONAL_DATA_SERICE=http://${PERSONAL_DATA_SERVICE}:${NODE_PORT}
+      - PERSONAL_DATA_SERVICE=http://${PERSONAL_DATA_SERVICE}:${NODE_PORT}
     ports:
       - "3003:${NODE_PORT}"
     volumes:

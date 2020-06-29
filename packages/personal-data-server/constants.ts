@@ -1,0 +1,1 @@
+export const PERSONAL_DATA_SERVICE = process.env.PERSONAL_DATA_SERVICE;

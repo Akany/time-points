@@ -11,7 +11,6 @@ router.post('/', (req: Request, res: Response) => {
             res.send(response.data);
         })
         .catch((result) => {
-            console.log(result);
             res.status(404);
             res.send('Failed');
         });
