@@ -106,10 +106,10 @@ services:
       context: ./packages/personal-data-client
     command: npm run dev
     environment:
-      - PORT=${NODE_PORT}
+      - PORT=3004
       - SERVER=http://${PERSONAL_DATA_SERVER}:${NODE_PORT}
     ports:
-      - "3004:${NODE_PORT}"
+      - "3004:3004"
     volumes:
       - ./packages/personal-data-client:/usr/src/app
       - /usr/src/app/node_modules
