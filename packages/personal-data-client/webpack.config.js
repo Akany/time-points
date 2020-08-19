@@ -22,6 +22,24 @@ module.exports = function(options) {
                     }
                 },
                 {
+                    test: /\.scss$/,
+                    exclude: /\.module\.scss$/,
+                    use: [
+                        'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: sourceMapEnabled
+                        }
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: sourceMapEnabled
+                        }
+                    }]
+                },
+                {
                     test: /\.module\.scss$/,
                     use: [
                         'style-loader',
@@ -38,11 +56,22 @@ module.exports = function(options) {
                             sourceMap: sourceMapEnabled
                         }
                     }]
-                }
+                },
+                {
+                    test: /\.(woff(2)?|ttf|eot|svg|gif|png|jpe?g)$/,
+                    use: [
+                      {
+                        loader: 'file-loader',
+                        options: {
+                          name: '[name].[ext]'
+                        }
+                      }
+                    ]
+                  }
             ]
         },
         plugins: [
-            new HtmlWebPackPlugin(),
+            new HtmlWebPackPlugin({meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'}}),
             new CleanWebpackPlugin()
         ],
         devServer: {
