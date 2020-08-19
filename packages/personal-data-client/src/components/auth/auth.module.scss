@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: cadetblue;
+}
+
+.title {
+    margin-bottom: 100px;
+    font-size: 30px;
+    letter-spacing: 1px;
+    font-family: "Fitalia";
+    font-weight: bold;
+    color: white;
+}
+
+.input {
+    width: 50%;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    font-family: serif;
+    font-size: 14px;
+    letter-spacing: .5px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgba(204,204,204,0.4);
+    color: #333333;
+    cursor: pointer;
+    outline: none;
+}
+
+.buttonHolder {
+    width: 50%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.text {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Fitalia";
+    letter-spacing: 1px;
+}
+
+.button {
+    padding: 15px 17px;
+    margin-left: 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    background-color: #333333;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+    font-family: "Fitalia";
+}

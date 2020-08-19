@@ -1,6 +1,16 @@
-import React from 'react';
-import styles from './app.module.scss';
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { Routes } from "./routes";
+import { store } from "./store";
+import "./app.scss";
 
 export function App() {
-    return <div className={styles.main}>We are starting!</div>
+  return (
+    <BrowserRouter>
+      <Provider store={store}>
+        <Routes />
+      </Provider>
+    </BrowserRouter>
+  );
 }
